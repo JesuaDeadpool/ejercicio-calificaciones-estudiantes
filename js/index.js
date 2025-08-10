@@ -3,8 +3,6 @@ const calcularNotaFinal = () => {
     const primerNota = document.querySelector('#primerNota').value;
     const segundaNota = document.querySelector('#segundaNota').value;
     const tercerNota = document.querySelector('#tercerNota').value;
-    const resultadoNota = document.querySelector('#notaFinal').value;
-    const mensajeNota = document.querySelector('#mensaje');
 
     if (primerNota === "") {
         alerta('El campo "Primera Nota" está vacio, favor ingrese su nota ');
@@ -28,24 +26,29 @@ const calcularNotaFinal = () => {
             let sumaNota = primerNotaNum + segundaNotaNum + tercerNotaNum;
             let mensajeText = "";
 
-            if (sumaNota < 60) {
+            if (sumaNota <= 59) {
                 mensajeText = "Reprobado";
             } else if (sumaNota <= 79) {
                 mensajeText = "Bueno";
             } else if (sumaNota <= 89) {
                 mensajeText = "Muy Bueno"
-            } else if (sumaNota <= 100) {
-                mensajeText = "Sobresaliente"
             } else {
-                mensajeText = "No es posible que la nota sea mayor a 100 pts"
+                mensajeText = "Sobresaliente"
             }
 
-            resultadoNota = sumaNota;
-            mensajeNota.textContent = mensajeText;
+            document.querySelector('#notaFinal').value = sumaNota;
+            document.querySelector('#mensaje').textContent = mensajeText;
         }
     }
 }
 
+const limpiar = () => {
+    document.querySelector('#primerNota').value = "";
+    document.querySelector('#segundaNota').value = "";
+    document.querySelector('#tercerNota').value = "";
+    document.querySelector('#notaFinal').value = "";
+    document.querySelector('#mensaje').textContent = mensajeText = "";
+}
 
 const alerta = (mensaje) => {
     Swal.fire({
